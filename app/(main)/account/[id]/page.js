@@ -3,8 +3,8 @@ import { BarLoader } from "react-spinners";
 import { getAccountWithTransaction } from '@/actions/account'
 import { notFound } from 'next/navigation';
 import React from 'react'
-import TransactionTable from "../_components/transaction-table";
 import AccountChart from "../_components/account-chart";
+import TransactionTable from "../_components/transaction-table";
 
 const AccountPage = async ({ params }) => {
   const { id } = params; // destructure safely

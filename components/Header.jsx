@@ -1,59 +1,60 @@
-import React from 'react'
-import { SignedOut, SignedIn, SignInButton, UserButton } from '@clerk/nextjs'
-import Image from 'next/image'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
-import { Button } from './ui/button'
+import Image from 'next/image'
+import { Button } from "./ui/button"
+import React from 'react'
 import { LayoutDashboard, PenBox } from 'lucide-react'
 import { checkUser } from '@/lib/CheckUser'
+
 const Header = async () => {
-  await checkUser();
-  return (
+    await checkUser();
+    return (
+        <div className='fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b px-10'>
+            <nav className='container mx-auto px-4 py-2 flex items-center justify-between'>
+                <Link href="/">
+                    <Image src={"/logo.webp"} alt="welth logo" width={200} height={60}
+                        className='h-12 w-auto object-contain'
+                    />
+                </Link>
+                <div className='flex items-center space-x-4'>
+                    <SignedIn>
+                        <Link href={"/dashboard"}
+                        className='text-gray-600 hover:text-blue-600 flex items-center gap-2'
+                        >
+                        <Button variant='outline'>
+                            <LayoutDashboard size={18}/>
+                            <span className='hidden md:inline'>Dashboard</span>
+                        </Button>
+                        </Link>
 
-    <div className='fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b'>
+                        <Link href={"/transaction/create"}>
+                        <Button 
+                        className='flex items-center gap-2'
+                        >
+                            <PenBox size={18}/>
+                            <span className='hidden md:inline'>Add Transcation</span>
+                        </Button>
+                        </Link>
+                    </SignedIn>
 
-      <nav className="container mx-auto py-4 px-4 flex items-center justify-between">
-        <Link href='/'>
-          <Image
-            className='h-12 w-auto object-contain'
-            src={'/logo.webp'} alt='logo' height={60} width={200} />
-        </Link>
-
-
-        <div className='flex items-center space-x-4'>
-            <SignedIn>
-              <Link href={'/dashboard'} className='text-gray-600 hover:text-blue-600 flex items-center gap-2'>
-              <Button variant={'outline'}>
-                  <LayoutDashboard size={18}/>
-                  <span className='hidden md:inline'>Dashboard</span>
-              </Button>
-              </Link>
-
-              <Link href={'/transection/create'} className='flex items-center gap-2'>
-              <Button >
-                  <PenBox size={18}/>
-                  <span className='hidden md:inline'>Transection</span>
-              </Button>
-              </Link>
-            </SignedIn>
-
-          <SignedOut>
-            <SignInButton forceRedirectUrl='/dashboard' >
-            <Button variant='outline'>Login</Button>
-            </SignInButton>
-            
-          </SignedOut>
-          <SignedIn>
-            <UserButton  appearance={{
-              elements:{
-                avatarBox:'w-10 h-10'
-              }
-            }}/>
-          </SignedIn>
+                    <SignedOut>
+                        <SignInButton forceRedirectUrl='/dashboard'>
+                            <Button variant="outline">Login</Button>
+                        </SignInButton>
+                    </SignedOut>
+                    <SignedIn>
+                        <UserButton 
+                        appearance={{
+                            elements:{
+                                avatarBox: "w-10 h-10",
+                            },
+                        }}
+                        />
+                    </SignedIn>
+                </div>
+            </nav>
         </div>
-      </nav>
-    </div>
-
-  )
+    )
 }
 
 export default Header
