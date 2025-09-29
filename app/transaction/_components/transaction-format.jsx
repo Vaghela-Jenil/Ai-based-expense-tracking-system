@@ -17,7 +17,6 @@ import { Switch } from '@/components/ui/switch';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import ReceiptScanner from './receipt-scanner';
-
 const AddTransactionForm = ({ accounts = [], categories = [], editMode = false,
     initialData = null, }) => {
     const router = useRouter();

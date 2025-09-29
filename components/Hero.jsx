@@ -42,7 +42,7 @@ const HeroSection = () => {
             <Link href={'/dashboard'}>
               <Button size='lg' className="px-8 ">Get Started</Button>
             </Link>
-            <Link href={'https://drive.google.com/file/d/1leZyfMTZsJXuwfxF2TGY4DChZTszoriU/view?usp=sharing'}>
+            <Link href={'https://drive.google.com/file/d/1leZyfMTZsJXuwfxF2TGY4DChZTszoriU/view?usp=sharing'} target='blank'>
               <Button variant={'outline'} size='lg' className="px-8 ">Watch demo</Button>
             </Link>
           </div> 
@@ -50,7 +50,7 @@ const HeroSection = () => {
       </div>
       <div className='hero-image-wrapper'>
         <div ref={imageRef} className='hero-image'>
-          <Image src={'/banner.png'} width={980} height={720} alt='Dashboard Preview' className='rounded-l-lg shadow-2xl border mx-auto' priority />
+          <Image src={'/banner1.jpeg'} width={1100} height={720} alt='Dashboard Preview' className='rounded-l-lg shadow-2xl border mx-auto' priority />
         </div>
       </div>
     </div>

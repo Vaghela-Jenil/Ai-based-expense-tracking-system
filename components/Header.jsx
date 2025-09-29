@@ -12,7 +12,7 @@ const Header = async () => {
         <div className='fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b px-10'>
             <nav className='container mx-auto px-4 py-2 flex items-center justify-between'>
                 <Link href="/">
-                    <Image src={"/logo.webp"} alt="welth logo" width={200} height={60}
+                    <Image src={"/logo.jpg"} alt="welth logo" width={800} height={200}
                         className='h-12 w-auto object-contain'
                     />
                 </Link>
@@ -23,7 +23,7 @@ const Header = async () => {
                         >
                         <Button variant='outline'>
                             <LayoutDashboard size={18}/>
-                            <span className='hidden md:inline'>Dashboard</span>
+                            <span className='hidden cursor-pointer md:inline'>Dashboard</span>
                         </Button>
                         </Link>
 
@@ -32,7 +32,7 @@ const Header = async () => {
                         className='flex items-center gap-2'
                         >
                             <PenBox size={18}/>
-                            <span className='hidden md:inline'>Add Transcation</span>
+                            <span className='hidden cursor-pointer md:inline'>Add Transcation</span>
                         </Button>
                         </Link>
                     </SignedIn>
