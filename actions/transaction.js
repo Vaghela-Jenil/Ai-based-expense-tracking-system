@@ -152,7 +152,6 @@ function calculateNextRecurringDate(startDate, interval) {
 //         },
 //       ],
 //     });
-//     debugger
 //     const response = await result.response;
 //     const text = await response.text();
 //     const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
@@ -180,7 +179,11 @@ export async function scanReceipt(file) {
   if (!file) throw new Error("No file provided");
 
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error("Gemini API key not configured");
+    }
+
+    const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
 
     const arrayBuffer = await file.arrayBuffer();
     const base64String = Buffer.from(arrayBuffer).toString("base64");
@@ -216,8 +219,12 @@ export async function scanReceipt(file) {
       ],
     });
 
-    const text = result.response.text(); // no await
+    const text = await result.response.text();
     console.log("Gemini raw text:", text);
+
+    if (!text || text.trim() === "") {
+      throw new Error("Empty response from Gemini API");
+    }
 
     const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
     const data = JSON.parse(cleanedText);
@@ -231,7 +238,7 @@ export async function scanReceipt(file) {
     };
   } catch (error) {
     console.error("Error scanning receipt:", error);
-    throw new Error("Failed to scan receipt");
+    throw new Error(`Failed to scan receipt: ${error.message}`);
   }
 }
 

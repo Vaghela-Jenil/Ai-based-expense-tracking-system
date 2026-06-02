@@ -18,7 +18,6 @@ const ReceiptScanner = ({ onScanComplete }) => {
 
 
     const handleReceiptScan = async (file) => {
-        debugger
         if (file.size > 5 * 1024 * 1024) {
             toast.error("File size should be less than 5MB");
             return;
