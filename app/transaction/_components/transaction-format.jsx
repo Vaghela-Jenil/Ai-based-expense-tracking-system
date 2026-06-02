@@ -109,7 +109,7 @@ const AddTransactionForm = ({ accounts = [], categories = [], editMode = false,
             reset();
             router.push(`/account/${transactionResult.data.accountId}`);
         }
-    }, [transactionResult, transactionLoading])
+    }, [transactionResult, transactionLoading, reset, router, editMode])
 
     return (
         <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>

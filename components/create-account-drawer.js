@@ -50,7 +50,7 @@ const CreateAccountDrawer = ({ children }) => {
             reset() // Reset form after successful creation
             setOpen(false) // Close the drawer
         }
-    }, [createAccountLoading, newAccount])
+    }, [createAccountLoading, newAccount, reset, setOpen])
 
     useEffect(() => {
         if (error) {
